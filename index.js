@@ -1,7 +1,12 @@
-import express from "express"; // node module 속의 express를 가져온다.
-const app = express(); // express를 실행해서 app에 담는다.
+import express from "express";
+import helmet from "helmet";
+import morgan from "morgan";
+import bodyParser from "body-parser";
+import cookieParser from "cookie-parser";
 
-const PORT = 4000; // PORT 번호
+const app = express();
+
+const PORT = 4000;
 
 const handleListening = () =>
   console.log(`Listening on: http://localhost:${PORT}`);
@@ -10,8 +15,14 @@ const handleHome = (req, res) => res.send("Welcome Home!");
 
 const handleProfile = (req, res) => res.send("This is my Profile!");
 
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.get("/", handleHome);
+
 app.get("/profile", handleProfile);
 
-// 누군가 http://localhost:4000 으로 접속하면 CallBack함수 실행
 app.listen(PORT, handleListening);
