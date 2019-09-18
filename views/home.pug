@@ -5,6 +5,7 @@ block content
     .books
         each book in books
             +bookBlock({
+                id: book.id,
                 title: book.title,
                 author: book.author,
                 cover: book.cover,

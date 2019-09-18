@@ -27,12 +27,26 @@ const routes = {
   login: LOGIN,
   logout: LOGOUT,
   search: SEARCH,
+
   users: USERS,
-  userDetail: USER_DETAIL,
+  userDetail: id => {
+    if (id) {
+      return `/users/${id}`;
+    } else {
+      return USER_DETAIL;
+    }
+  },
   editProfile: EDIT_PROFILE,
   changePassword: CHANGE_PASSWORD,
+
   books: BOOKS,
-  bookDetail: BOOK_DETAIL,
+  bookDetail: id => {
+    if (id) {
+      return `/books/${id}`;
+    } else {
+      return BOOK_DETAIL;
+    }
+  },
   editBook: EDIT_BOOK,
   deleteBook: DELETE_BOOK,
   uploadBook: UPLOAD_BOOK

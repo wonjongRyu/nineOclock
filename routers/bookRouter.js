@@ -4,14 +4,19 @@ import {
   bookDetail,
   editBook,
   deleteBook,
-  uploadBook
+  getUploadBook,
+  postUploadBook
 } from "../controllers/bookController";
 
 const bookRouter = express.Router();
 
 bookRouter.get(routes.editBook, editBook);
+
 bookRouter.get(routes.deleteBook, deleteBook);
-bookRouter.get(routes.uploadBook, uploadBook);
-bookRouter.get(routes.bookDetail, bookDetail);
+
+bookRouter.get(routes.uploadBook, getUploadBook);
+bookRouter.post(routes.uploadBook, postUploadBook);
+
+bookRouter.get(routes.bookDetail(), bookDetail);
 
 export default bookRouter;

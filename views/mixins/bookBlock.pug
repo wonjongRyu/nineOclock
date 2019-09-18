@@ -1,7 +1,8 @@
 mixin bookBlock(book = {})
     .bookBlock
-        img.bookBlock_cover(src = book.cover)
-        h4.bookBlock_title=book.title
-        h6.bookBlock_author=book.author
-        h6.bookBlock_recommended=book.recommended
-        h6.bookBlock_description=book.description
+        a(href=routes.bookDetail(book.id))
+            img.bookBlock_cover(src = book.cover)
+            h4.bookBlock_title=book.title
+            h6.bookBlock_author=book.author
+            h6.bookBlock_recommended=book.recommended
+            h6.bookBlock_description=book.description

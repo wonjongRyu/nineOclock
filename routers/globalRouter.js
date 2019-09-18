@@ -4,7 +4,8 @@ import {
   home,
   getJoin,
   postJoin,
-  login,
+  getLogin,
+  postLogin,
   search
 } from "../controllers/globalController";
 
@@ -15,7 +16,8 @@ globalRouter.get(routes.home, home);
 globalRouter.get(routes.join, getJoin);
 globalRouter.post(routes.join, postJoin);
 
-globalRouter.get(routes.login, login);
+globalRouter.get(routes.login, getLogin);
+globalRouter.post(routes.login, postLogin);
 
 globalRouter.get(routes.search, search);
 
