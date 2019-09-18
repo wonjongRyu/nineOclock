@@ -1,16 +1,8 @@
-export const home = (req, res) => res.render("home", { pageTitle: "Home" });
-export const join = (req, res) => res.render("join", { pageTitle: "Join" });
-export const login = (req, res) => res.render("login");
-export const logout = (req, res) => res.render("logout");
+export const userDetail = (req, res) =>
+  res.render("userDetail", { pageTitle: "User Detail" });
 
-export const search = (req, res) => {
-  const {
-    query: { term: searchingBy }
-  } = req;
-  res.render("search", { pageTitle: "Search", searchingBy });
-};
+export const editProfile = (req, res) =>
+  res.render("editProfile", { pageTitle: "Edit Profile" });
 
-export const users = (req, res) => res.render("users");
-export const userDetail = (req, res) => res.render("user Detail");
-export const editProfile = (req, res) => res.render("editProfile");
-export const changePassword = (req, res) => res.render("change Password");
+export const changePassword = (req, res) =>
+  res.render("changePassword", { pageTitle: "Change Password" });
