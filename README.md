@@ -1,4 +1,4 @@
-# nineOclock
+# Nine O Clock
 
 Web Development of Reading Club
 

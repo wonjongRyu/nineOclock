@@ -12,5 +12,5 @@ export const search = (req, res) => {
 
 export const users = (req, res) => res.render("users");
 export const userDetail = (req, res) => res.render("user Detail");
-export const editProfile = (req, res) => res.render("edit Profile");
+export const editProfile = (req, res) => res.render("editProfile");
 export const changePassword = (req, res) => res.render("change Password");

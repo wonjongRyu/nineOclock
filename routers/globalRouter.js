@@ -6,7 +6,7 @@ import {
   login,
   logout,
   search
-} from "../controllers/userControllers";
+} from "../controllers/userController";
 
 const globalRouter = express.Router();
 
