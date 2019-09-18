@@ -1,4 +1,13 @@
 extends layouts/main.pug
+include mixins/bookBlock.pug
 
 block content
-    p Welcome to Sweet Home!
+    .books
+        each book in books
+            +bookBlock({
+                title: book.title,
+                author: book.author,
+                cover: book.cover,
+                recommended: book.recommended,
+                description: book.description
+            })

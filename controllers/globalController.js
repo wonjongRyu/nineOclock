@@ -1,4 +1,8 @@
-export const home = (req, res) => res.render("home", { pageTitle: "Home" });
+import { books } from "../db";
+
+export const home = (req, res) => {
+  res.render("home", { pageTitle: "Home", books });
+};
 
 export const join = (req, res) => res.render("join", { pageTitle: "Join" });
 
