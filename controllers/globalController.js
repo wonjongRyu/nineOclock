@@ -1,7 +1,14 @@
 import routes from "../routes";
+import Book from "../models/Book";
 
-export const home = (req, res) => {
-  res.render("home", { pageTitle: "Home", books });
+export const home = async (req, res) => {
+  try {
+    const Books = await Book.find({});
+    res.render("home", { pageTitle: "Home", books });
+  } catch (error) {
+    console.log(error);
+    res.render("home", { PageTitle: "Home", books: [] });
+  }
 };
 
 export const getJoin = (req, res) => {
@@ -34,4 +41,9 @@ export const search = (req, res) => {
     query: { term: searchingBy }
   } = req;
   res.render("search", { pageTitle: "Search", searchingBy, books });
+};
+
+export const logout = (req, res) => {
+  // To Do: Process Log Out
+  res.redirect(routes.home);
 };

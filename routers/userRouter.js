@@ -3,18 +3,14 @@ import routes from "../routes";
 import {
   userDetail,
   editProfile,
-  changePassword
+  changePassword,
+  logout
 } from "../controllers/userController";
 
 const userRouter = express.Router();
 
 userRouter.get(routes.editProfile, editProfile);
 userRouter.get(routes.changePassword, changePassword);
-userRouter.get(routes.userDetail, userDetail);
-
-export const logout = (req, res) => {
-  // To Do: Process Log Out
-  res.redirect(routes.home);
-};
+userRouter.get(routes.userDetail(), userDetail);
 
 export default userRouter;

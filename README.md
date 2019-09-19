@@ -10,13 +10,13 @@ Global
 - [x] Join
 - [x] Login
 - [x] Search
+- Logout is not the page.
 
 Users
 
 - [ ] User Detail
 - [x] Edit Profile
 - [x] Change Password
-- Logout is not the page.
 
 Books
 
