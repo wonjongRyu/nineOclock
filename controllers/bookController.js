@@ -1,4 +1,3 @@
-import { books } from "../db";
 import routes from "../routes";
 
 export const bookDetail = (req, res) =>

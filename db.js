@@ -1,28 +1,16 @@
-export const books = [
-  {
-    id: 123,
-    title: "Walking Person",
-    author: "Ha Jeongwoo",
-    cover: "http://image.yes24.com/momo/TopCate0001/kepub/X_977264.jpg",
-    recommended: 31,
-    description: "Famous Book",
-    uploader: {
-      id: 321,
-      name: "Wonjong Ryu",
-      email: "wonjong4773@gmail.com"
-    }
-  },
-  {
-    id: 12321,
-    title: "Huddling words",
-    author: "Lee Moonyeong",
-    cover: "http://image.yes24.com/momo/TopCate1718/MidCate007/171765845.jpg",
-    recommended: 131,
-    description: "Popular Book",
-    uploader: {
-      id: 32123,
-      name: "Junghyuk Lim",
-      email: "junghyuk@kaist.ac.kr"
-    }
-  }
-];
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URL, {
+  userNewUrlParser: true,
+  useFindANdModify: false
+}); // Let me know where is the DB.
+
+const db = mongoose.connection;
+
+const handleOpen = () => console.log("✅  Connected to DB");
+const handleError = error => console.log(`❌  Error on DB Connection:${error}`);
+
+db.once("open", handleOpen);
+db.on("error", handleError);
