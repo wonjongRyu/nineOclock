@@ -2,7 +2,8 @@ import express from "express";
 import routes from "../routes";
 import {
   bookDetail,
-  editBook,
+  getEditBook,
+  postEditBook,
   deleteBook,
   getUploadBook,
   postUploadBook
@@ -11,13 +12,12 @@ import { addBook } from "../middlewares";
 
 const bookRouter = express.Router();
 
-bookRouter.get(routes.editBook, editBook);
-
-bookRouter.get(routes.deleteBook, deleteBook);
-
 bookRouter.get(routes.uploadBook, getUploadBook);
 bookRouter.post(routes.uploadBook, addBook, postUploadBook);
 
 bookRouter.get(routes.bookDetail(), bookDetail);
+bookRouter.get(routes.editBook(), getEditBook);
+bookRouter.post(routes.editBook(), postEditBook);
+bookRouter.get(routes.deleteBook(), deleteBook);
 
 export default bookRouter;

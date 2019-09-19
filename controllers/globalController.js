@@ -3,7 +3,7 @@ import Book from "../models/Book";
 
 export const home = async (req, res) => {
   try {
-    const books = await Book.find({});
+    const books = await Book.find({}).sort({ _id: -1 });
     res.render("home", { pageTitle: "Home", books });
   } catch (error) {
     console.log(error);
@@ -36,10 +36,18 @@ export const postLogin = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const {
     query: { term: searchingBy }
   } = req;
+  let books = [];
+  try {
+    books = await Book.find({
+      title: { $regex: searchingBy, $options: "i" }
+    });
+  } catch (error) {
+    console.log(error);
+  }
   res.render("search", { pageTitle: "Search", searchingBy, books });
 };
 

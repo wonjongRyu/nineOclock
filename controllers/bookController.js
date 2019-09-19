@@ -1,8 +1,18 @@
 import routes from "../routes";
 import Book from "../models/Book";
 
-export const bookDetail = (req, res) =>
-  res.render("bookDetail", { pageTitle: "Book Detail" });
+export const bookDetail = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const book = await Book.findById(id);
+
+    res.render("bookDetail", { pageTitle: "Book Detail", book });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
 
 export const getUploadBook = (req, res) =>
   res.render("uploadBook", { pageTitle: "Upload Book" });
@@ -17,12 +27,42 @@ export const postUploadBook = async (req, res) => {
     title,
     description
   });
-  console.log(newBook);
   res.redirect(routes.bookDetail(newBook.id));
 };
 
-export const editBook = (req, res) =>
-  res.render("editBook", { pageTitle: "Edit Book" });
+export const getEditBook = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const book = await Book.findById(id);
+    res.render("editBook", { pageTitle: book.title, book });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
 
-export const deleteBook = (req, res) =>
-  res.render("deleteBook", { pageTitle: "Delete Book" });
+export const postEditBook = async (req, res) => {
+  const {
+    params: { id },
+    body: { title, description }
+  } = req;
+  try {
+    await Book.findOneAndUpdate({ _id: id }, { title, description });
+    res.redirect(routes.bookDetail(id));
+  } catch (error) {
+    res.redirect(routes.home);
+  }
+};
+
+export const deleteBook = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    await Book.findOneAndRemove({ _id: id });
+  } catch (error) {
+    console.log(error);
+  }
+  res.redirect(routes.home);
+};

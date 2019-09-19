@@ -47,8 +47,20 @@ const routes = {
       return BOOK_DETAIL;
     }
   },
-  editBook: EDIT_BOOK,
-  deleteBook: DELETE_BOOK,
+  editBook: id => {
+    if (id) {
+      return `/books/${id}/edit`;
+    } else {
+      return EDIT_BOOK;
+    }
+  },
+  deleteBook: id => {
+    if (id) {
+      return `/books/${id}/delete`;
+    } else {
+      return DELETE_BOOK;
+    }
+  },
   uploadBook: UPLOAD_BOOK
 };
 

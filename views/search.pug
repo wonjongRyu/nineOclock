@@ -5,11 +5,14 @@ block content
     .search__header
         h3 Searching for: #{searchingBy}
     .search__books
+        if books.length === 0
+            h5 No Books Found
         each book in books
             +bookBlock({
+                id:book.id,
                 title: book.title,
                 author: book.author,
-                cover: book.cover,
+                file: book.fileUrl,
                 recommended: book.recommended,
                 description: book.description
             })
