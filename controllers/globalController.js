@@ -3,7 +3,7 @@ import Book from "../models/Book";
 
 export const home = async (req, res) => {
   try {
-    const Books = await Book.find({});
+    const books = await Book.find({});
     res.render("home", { pageTitle: "Home", books });
   } catch (error) {
     console.log(error);

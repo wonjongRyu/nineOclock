@@ -11,7 +11,7 @@ const BookSchema = new mongoose.Schema({
   },
   author: {
     type: String,
-    required: "Author is required"
+    default: "IDK"
   },
   description: String,
   recommended: {

@@ -1,4 +1,5 @@
 import routes from "../routes";
+import Book from "../models/Book";
 
 export const bookDetail = (req, res) =>
   res.render("bookDetail", { pageTitle: "Book Detail" });
@@ -6,12 +7,18 @@ export const bookDetail = (req, res) =>
 export const getUploadBook = (req, res) =>
   res.render("uploadBook", { pageTitle: "Upload Book" });
 
-export const postUploadBook = (req, res) => {
+export const postUploadBook = async (req, res) => {
   const {
-    body: { file, title, description }
+    body: { title, description },
+    file: { path }
   } = req;
-  // To Do: Upload and save book
-  res.redirect(routes.home);
+  const newBook = await Book.create({
+    fileUrl: path,
+    title,
+    description
+  });
+  console.log(newBook);
+  res.redirect(routes.bookDetail(newBook.id));
 };
 
 export const editBook = (req, res) =>
