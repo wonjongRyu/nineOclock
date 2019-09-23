@@ -3,13 +3,15 @@ import routes from "../routes";
 import {
   userDetail,
   editProfile,
-  changePassword
+  changePassword,
+  getMe
 } from "../controllers/userController";
 
 import { onlyPrivate } from "../middlewares";
 
 const userRouter = express.Router();
 
+userRouter.get(routes.me, getMe);
 userRouter.get(routes.editProfile, onlyPrivate, editProfile);
 userRouter.get(routes.changePassword, onlyPrivate, changePassword);
 userRouter.get(routes.userDetail(), userDetail);
