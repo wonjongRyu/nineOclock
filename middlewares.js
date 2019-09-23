@@ -2,8 +2,10 @@ import routes from "./routes";
 import multer from "multer";
 
 const multerBook = multer({ dest: "uploads/books/" });
+const multerAvatar = multer({ dest: "uploads/avatars/" });
 
 export const addBook = multerBook.single("bookFile");
+export const uploadAvatar = multerAvatar.single("avatar");
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "Nine O Clock";
