@@ -8,16 +8,16 @@ import {
   getUploadBook,
   postUploadBook
 } from "../controllers/bookController";
-import { addBook } from "../middlewares";
+import { addBook, onlyPrivate } from "../middlewares";
 
 const bookRouter = express.Router();
 
-bookRouter.get(routes.uploadBook, getUploadBook);
-bookRouter.post(routes.uploadBook, addBook, postUploadBook);
+bookRouter.get(routes.uploadBook, onlyPrivate, getUploadBook);
+bookRouter.post(routes.uploadBook, onlyPrivate, addBook, postUploadBook);
 
 bookRouter.get(routes.bookDetail(), bookDetail);
-bookRouter.get(routes.editBook(), getEditBook);
-bookRouter.post(routes.editBook(), postEditBook);
-bookRouter.get(routes.deleteBook(), deleteBook);
+bookRouter.get(routes.editBook(), onlyPrivate, getEditBook);
+bookRouter.post(routes.editBook(), onlyPrivate, postEditBook);
+bookRouter.get(routes.deleteBook(), onlyPrivate, deleteBook);
 
 export default bookRouter;
