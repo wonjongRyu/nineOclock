@@ -3,8 +3,9 @@ extends layouts/main
 block content
     .form-container
         form(action=`/books${routes.uploadBook}`, method="post", enctype="multipart/form-data")
-            label(for="file") Book Cover
-            input(type="file", id="file", name="bookFile", required=true, accept="image/*")
+            div.fileUpload
+                label(for="file") Book Cover
+                input(type="file", id="file", name="bookFile", required=true, accept="image/*")
             input(type="text", name="title", placeholder="Title", required=true)
             input(type="text", name="description", placeholder="Description", required=true)
             input(type="submit", value="Upload Book")

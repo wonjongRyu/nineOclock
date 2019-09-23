@@ -2,8 +2,16 @@ extends layouts/main
 include mixins/bookBlock
 
 block content
-    .books
+    .home-books
         each book in books
+            +bookBlock({
+                id: book.id,
+                title: book.title,
+                author: book.author,
+                file: book.fileUrl,
+                recommended: book.recommended,
+                description: book.description
+            })
             +bookBlock({
                 id: book.id,
                 title: book.title,
