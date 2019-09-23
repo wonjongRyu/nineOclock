@@ -21,6 +21,11 @@ const EDIT_BOOK = "/:id/edit";
 const DELETE_BOOK = "/:id/delete";
 const UPLOAD_BOOK = "/upload";
 
+// Authentication
+
+const KAKAO = "/auth/kakao";
+const KAKAO_CALLBACK = "/oauth";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -61,7 +66,9 @@ const routes = {
       return DELETE_BOOK;
     }
   },
-  uploadBook: UPLOAD_BOOK
+  uploadBook: UPLOAD_BOOK,
+  kakao: KAKAO,
+  kakaoCallback: KAKAO_CALLBACK
 };
 
 export default routes;

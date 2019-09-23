@@ -45,6 +45,38 @@ export const postLogin = passport.authenticate("local", {
   successRedirect: routes.home
 });
 
+export const kakaoLogin = passport.authenticate("kakao");
+
+export const kakaoLoginCallback = async (_, __, profile, done) => {
+  const id = profile.id;
+  const username = profile.username;
+  const kaccout_email = profile._json.kaccount_email;
+  const profile_image = profile._json.properties.profile_image;
+
+  try {
+    console.log(profile, done);
+    const user = await User.findOne({ kaccout_email });
+    if (user) {
+      user.kakaoId = id;
+      user.save();
+      return done(null, user);
+    }
+    const newUser = await User.create({
+      email: kaccout_email,
+      name: username,
+      kakaoId: id,
+      avatarUrl: profile_image
+    });
+    return done(null, newUser);
+  } catch (error) {
+    return done(error);
+  }
+};
+
+export const postKakaoLogin = (req, res) => {
+  res.redirect(routes.home);
+};
+
 export const search = async (req, res) => {
   const {
     query: { term: searchingBy }
@@ -61,6 +93,6 @@ export const search = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  // To Do: Process Log Out
+  req.logout();
   res.redirect(routes.home);
 };
