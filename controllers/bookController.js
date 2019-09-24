@@ -38,7 +38,11 @@ export const getEditBook = async (req, res) => {
   } = req;
   try {
     const book = await Book.findById(id);
-    res.render("editBook", { pageTitle: book.title, book });
+    if (book.creator !== req.user.id) {
+      throw Error();
+    } else {
+      res.render("editBook", { pageTitle: `Edit ${book.title}`, book });
+    }
   } catch (error) {
     res.redirect(routes.home);
   }
@@ -62,7 +66,12 @@ export const deleteBook = async (req, res) => {
     params: { id }
   } = req;
   try {
-    await Book.findOneAndRemove({ _id: id });
+    const book = await Book.findById(id);
+    if (book.creator !== req.user.id) {
+      throw Error();
+    } else {
+      await Book.findOneAndRemove({ _id: id });
+    }
   } catch (error) {
     console.log(error);
   }
