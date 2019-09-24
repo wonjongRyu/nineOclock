@@ -5,14 +5,18 @@ block content
         .book__file
             img(src=`/${book.fileUrl}`)
         .book__info
-            a(href=routes.editBook(book.id)) 
-                button Edit book
+            if (loggedUser && book.creator.id === loggedUser.id)
+                a(href=routes.editBook(book.id)) 
+                    button Edit book
             h5.book__title=book.title
             p.book__description=book.description 
             if book.recommended === 1
                 span.book__recommended 1 recommeded
             else 
                 span.book__recommended #{book.recommended} recommended
+            .book__author
+                | Uploded by 
+                a(href=routes.userDetail(book.creator.id))=book.creator.name
         .book__comments
             if book.comments.length === 1
                 span.book__comment-number 1 comment

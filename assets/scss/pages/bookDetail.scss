@@ -10,6 +10,11 @@
       width: 100px;
       margin-bottom: 25px;
     }
+    .book__author {
+      a {
+        color: #3498db;
+      }
+    }
     .book__title,
     .book__recommended,
     .book__description {

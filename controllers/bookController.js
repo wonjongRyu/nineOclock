@@ -6,8 +6,7 @@ export const bookDetail = async (req, res) => {
     params: { id }
   } = req;
   try {
-    const book = await Book.findById(id);
-
+    const book = await Book.findById(id).populate("creator");
     res.render("bookDetail", { pageTitle: "Book Detail", book });
   } catch (error) {
     res.redirect(routes.home);
@@ -25,8 +24,11 @@ export const postUploadBook = async (req, res) => {
   const newBook = await Book.create({
     fileUrl: path,
     title,
-    description
+    description,
+    creator: req.user.id
   });
+  req.user.books.push(newBook.id);
+  req.user.save();
   res.redirect(routes.bookDetail(newBook.id));
 };
 

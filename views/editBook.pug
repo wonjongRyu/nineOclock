@@ -6,5 +6,5 @@ block content
             input(type="text", placeholder="Title", name="title", value=book.title)
             textarea(name="description", placeholder="Description")=book.description
             input(type="submit", value="Update Book")
-        a.form-container__link(href=routes.deletebook(book.id))
+        a.form-container__link(href=routes.deleteBook(book.id))
             button.delete Delete Book 

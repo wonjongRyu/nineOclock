@@ -54,7 +54,6 @@ export const kakaoLoginCallback = async (_, __, profile, done) => {
   const profile_image = profile._json.properties.profile_image;
 
   try {
-    console.log(profile, done);
     const user = await User.findOne({ kaccout_email });
     if (user) {
       user.kakaoId = id;
