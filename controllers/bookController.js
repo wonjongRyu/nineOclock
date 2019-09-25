@@ -22,7 +22,7 @@ export const postUploadBook = async (req, res) => {
     file: { path }
   } = req;
   const newBook = await Book.create({
-    fileUrl: path,
+    fileUrl: `/${path}`,
     title,
     description,
     creator: req.user.id
@@ -38,7 +38,7 @@ export const getEditBook = async (req, res) => {
   } = req;
   try {
     const book = await Book.findById(id);
-    if (book.creator !== req.user.id) {
+    if (book.creator != req.user.id) {
       throw Error();
     } else {
       res.render("editBook", { pageTitle: `Edit ${book.title}`, book });
@@ -67,7 +67,7 @@ export const deleteBook = async (req, res) => {
   } = req;
   try {
     const book = await Book.findById(id);
-    if (book.creator !== req.user.id) {
+    if (book.creator != req.user.id) {
       throw Error();
     } else {
       await Book.findOneAndRemove({ _id: id });

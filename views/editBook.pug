@@ -1,7 +1,7 @@
 extends layouts/main
 
 block content
-    .form-container
+    .form__container
         form(action=routes.editBook(book.id), method="post")
             input(type="text", placeholder="Title", name="title", value=book.title)
             textarea(name="description", placeholder="Description")=book.description

@@ -1,9 +1,9 @@
 mixin bookBlock(book = {})
     .bookBlock
         a(href=routes.bookDetail(book.id))
-            img.bookBlock_file(src=`/${book.file}`)
-            h4.bookBlock_title=book.title
-            h6.bookBlock_author=book.author
+            img.bookBlock__file(src=book.file)
+            h4.bookBlock__title=book.title
+            h6.bookBlock__author=book.author
             if book.recommended === 1
                 h6.bookBlock_recommended 1 recommeded
             else 

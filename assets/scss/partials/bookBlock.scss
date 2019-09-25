@@ -1,8 +1,9 @@
 .bookBlock {
-  book {
+  img {
     margin-bottom: 10px;
-    max-width: 100%;
+    max-width: 100px; // 100%
   }
+
   .bookBlock__title {
     font-size: 18px;
     font-weight: 300;

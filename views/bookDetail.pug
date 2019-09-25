@@ -3,7 +3,7 @@ extends layouts/main
 block content
     .book-detail__container
         .book__file
-            img(src=`/${book.fileUrl}`)
+            img(src=book.fileUrl)
         .book__info
             if (loggedUser && book.creator.id === loggedUser.id)
                 a(href=routes.editBook(book.id)) 
