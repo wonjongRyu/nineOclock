@@ -58,6 +58,16 @@ export const postChangePassword = async (req, res) => {
   }
 };
 
-export const getMe = (req, res) => {
-  res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+export const getMe = async (req, res) => {
+  const {
+    user: { id }
+  } = req;
+  //console.log(req.user);
+  try {
+    const user = await User.findById(id).populate("books");
+    //console.log(user);
+    res.render("userDetail", { pageTitle: "User Detail", user });
+  } catch (error) {
+    res.redirect(routes.home);
+  }
 };
