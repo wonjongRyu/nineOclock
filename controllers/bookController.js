@@ -1,10 +1,13 @@
 import routes from "../routes";
 import Book from "../models/Book";
+import fetch from "node-fetch";
 
 export const bookDetail = async (req, res) => {
   const {
     params: { id }
   } = req;
+  const { url: bookId } = req;
+  registerView(bookId);
   try {
     const book = await Book.findById(id).populate("creator");
     res.render("bookDetail", { pageTitle: "Book Detail", book });
@@ -76,4 +79,30 @@ export const deleteBook = async (req, res) => {
     console.log(error);
   }
   res.redirect(routes.home);
+};
+
+export const postRegisterView = async (req, res) => {
+  const {
+    params: { id }
+  } = req;
+  try {
+    const book = await Book.findById(id);
+    book.views += 1;
+    book.save();
+    res.status(200);
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
+  }
+};
+
+const registerView = async bookId => {
+  try {
+    await fetch(`http://localhost:4000/api${bookId}/views`, {
+      method: "POST"
+    });
+  } catch (error) {
+    console.log(error);
+  }
 };

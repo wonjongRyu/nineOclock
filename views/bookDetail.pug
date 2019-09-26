@@ -14,6 +14,10 @@ block content
                 span.book__recommended 1 recommeded
             else 
                 span.book__recommended #{book.recommended} recommended
+            if book.views === 1
+                span.book__views 1 view
+            else 
+                span.book__views #{book.views} views
             .book__author
                 | Uploded by 
                 a(href=routes.userDetail(book.creator.id))=book.creator.name

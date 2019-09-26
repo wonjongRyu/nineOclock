@@ -4,6 +4,10 @@ mixin bookBlock(book = {})
             img.bookBlock__file(src=book.file)
             h4.bookBlock__title=book.title
             h6.bookBlock__author=book.author
+            if book.views === 1
+                h6.bookBlock_views 1 view
+            else 
+                h6.bookBlock_views #{book.views} views
             if book.recommended === 1
                 h6.bookBlock_recommended 1 recommeded
             else 

@@ -13,6 +13,7 @@ import "./passport";
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import mongoose from "mongoose";
+import apiRouter from "./routers/apiRouter";
 
 const app = express();
 
@@ -44,5 +45,6 @@ app.use(localsMiddleware);
 app.use(routes.home, globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.books, bookRouter);
+app.use(routes.api, apiRouter);
 
 export default app;
