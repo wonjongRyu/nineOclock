@@ -1,6 +1,7 @@
 import routes from "../routes";
 import Book from "../models/Book";
 import fetch from "node-fetch";
+import Comment from "../models/Comment";
 
 export const bookDetail = async (req, res) => {
   const {
@@ -9,7 +10,9 @@ export const bookDetail = async (req, res) => {
   const { url: bookId } = req;
   registerView(bookId);
   try {
-    const book = await Book.findById(id).populate("creator");
+    const book = await Book.findById(id)
+      .populate("creator")
+      .populate("comments");
     res.render("bookDetail", { pageTitle: "Book Detail", book });
   } catch (error) {
     res.redirect(routes.home);
@@ -104,5 +107,26 @@ const registerView = async bookId => {
     });
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const postAddComment = async (req, res) => {
+  const {
+    params: { id },
+    body: { comment },
+    user
+  } = req;
+  try {
+    const book = await Book.findById(id);
+    const newComment = await Comment.create({
+      text: comment,
+      creator: user.id
+    });
+    book.comments.push(newComment.id);
+    book.save();
+  } catch (error) {
+    res.status(400);
+  } finally {
+    res.end();
   }
 };
