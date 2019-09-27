@@ -32,7 +32,7 @@ block content
                     |  comments
             form.add__comment#jsAddComment
                 input(type="text", placeholder="Add a comment")
-            ul.book__comments-list
-                each comment in book.comments
+            ul.book__comments-list#jsCommentList
+                each comment in book.comments.reverse()
                     li
                         span=comment.text 
